@@ -1,0 +1,27 @@
+{
+  "name": "bbframe",
+  "version": "0.0.1",
+  "description": "B web framework for building virtual reality experiences.",
+  "homepage": "https://github.com/juunini/bbframe",
+  "scripts": {},
+  "repository": "juunini/bbframe",
+  "license": "MIT",
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {},
+  "link": true,
+  "keywords": [
+    "3d",
+    "bbframe",
+    "cardboard",
+    "components",
+    "oculus",
+    "babylonjs",
+    "babylon.js",
+    "rift",
+    "vive",
+    "vr",
+    "web-components",
+    "webvr"
+  ]
+}
