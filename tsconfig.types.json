@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./lib",
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "paths": {
+      "bbframe/*": ["./src/*"],
+      "bbframe": ["./src/index.ts"]
+    }
+  },
+  "files": [
+    "./src/index.ts",
+    "./src/core/index.ts",
+  ],
+  "exclude": ["./src/**/*", "./__tests__/**/*"]
+}
