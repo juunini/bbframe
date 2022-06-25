@@ -17,6 +17,7 @@ const globals = {
 
 const inputSrcs = [
   ['src/index.ts', 'BBFrame', 'bbframe'],
+  ['src/core/index.ts', 'BBFrameCore', 'bbframe-core'],
 ];
 
 const extensions = ['.js', '.jsx', '.es6', '.es', '.mjs', '.ts', '.tsx'];
