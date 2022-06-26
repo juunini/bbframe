@@ -4,4 +4,5 @@ export { default as BBSphere } from './BBSphere';
 export { default as BBBox } from './BBBox';
 export { default as BBCylinder } from './BBCylinder';
 export { default as BBPlane } from './BBPlane';
+export { default as BBGround } from './BBGround';
 export { default as BBSky } from './BBSky';
