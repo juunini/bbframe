@@ -1,4 +1,4 @@
-import { CreateSphere } from '@babylonjs/core/Meshes/Builders/sphereBuilder';
+import { CreateCylinder } from '@babylonjs/core/Meshes/Builders/cylinderBuilder';
 import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
 import { Color3 } from '@babylonjs/core/Maths/math.color';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
@@ -10,22 +10,27 @@ const observedAttributes = [
   'position',
   'color',
   'radius',
+  'height',
 ] as const;
 type ObservedAttributes = typeof observedAttributes[number];
 
-export default class BBSphere extends HTMLElement {
+export default class BBCylinder extends HTMLElement {
   static get observedAttributes(): typeof observedAttributes {
     return observedAttributes;
   }
 
   public object3D: Mesh;
 
+  private diameter?: number;
+
+  private height?: number;
+
   constructor() {
     super();
 
     const bbScene = this.closest('bb-scene') as BBScene;
-    this.object3D = CreateSphere('sphere', {}, bbScene.scene);
-    this.object3D.material = new StandardMaterial('standard material for sphere', bbScene.scene);
+    this.object3D = CreateCylinder('cylinder', {}, bbScene.scene);
+    this.object3D.material = new StandardMaterial('standard material for cylinder', bbScene.scene);
   }
 
   attributeChangedCallback(key: ObservedAttributes, _oldValue: string, newValue: string): void {
@@ -33,6 +38,7 @@ export default class BBSphere extends HTMLElement {
       color: (value: string) => this.setColor(value),
       position: (value: string) => this.setPosition(value),
       radius: (value: string) => this.setRadius(value),
+      height: (value: string) => this.setHeight(value),
     };
 
     callbacks[key](newValue);
@@ -58,12 +64,24 @@ export default class BBSphere extends HTMLElement {
   }
 
   private setRadius(radius: string): void {
+    this.diameter = parseFloat(radius);
+
+    this.reRenderCylinder();
+  }
+
+  private setHeight(height: string): void {
+    this.height = parseFloat(height);
+
+    this.reRenderCylinder();
+  }
+
+  private reRenderCylinder() {
     const scene = this.object3D.getScene();
     const { position, material } = this.object3D;
 
     this.object3D.dispose();
 
-    this.object3D = CreateSphere('sphere', { diameter: parseFloat(radius) }, scene);
+    this.object3D = CreateCylinder('cylinder', { diameter: this.diameter, height: this.height }, scene);
     this.object3D.material = material;
     this.object3D.position = position;
   }

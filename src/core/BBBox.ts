@@ -66,6 +66,6 @@ export default class BBBox extends HTMLElement {
   private stringToNumber3(value: string): number[] {
     return value
       .split(' ')
-      .map((currentValue) => parseInt(currentValue, 10));
+      .map((currentValue) => parseFloat(currentValue));
   }
 }
