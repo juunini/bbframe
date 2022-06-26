@@ -31,6 +31,7 @@ export default class BBGround extends HTMLElement {
 
     const bbScene = this.closest('bb-scene') as BBScene;
     this.object3D = CreateGround('ground', {}, bbScene.scene);
+    this.object3D.receiveShadows = true;
     this.object3D.material = new StandardMaterial('standard material for ground', bbScene.scene);
   }
 
@@ -55,12 +56,12 @@ export default class BBGround extends HTMLElement {
       const colors = this.stringToNumber3(color);
 
       (this.object3D.material! as StandardMaterial)
-        .emissiveColor = new Color3(colors[0], colors[1], colors[2]);
+        .diffuseColor = new Color3(colors[0], colors[1], colors[2]);
       return;
     }
 
     (this.object3D.material! as StandardMaterial)
-      .emissiveColor = Color3.FromHexString(color);
+      .diffuseColor = Color3.FromHexString(color);
   }
 
   private setPosition(position: string): void {
@@ -96,6 +97,7 @@ export default class BBGround extends HTMLElement {
     this.object3D = CreateGround('ground', { width: this.width, height: this.height }, scene);
     this.object3D.material = material;
     this.object3D.position = position;
+    this.object3D.receiveShadows = true;
   }
 
   private stringToNumber3(value: string): number[] {

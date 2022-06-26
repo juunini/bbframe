@@ -49,12 +49,12 @@ export default class BBCylinder extends HTMLElement {
       const colors = this.stringToNumber3(color);
 
       (this.object3D.material! as StandardMaterial)
-        .emissiveColor = new Color3(colors[0], colors[1], colors[2]);
+        .diffuseColor = new Color3(colors[0], colors[1], colors[2]);
       return;
     }
 
     (this.object3D.material! as StandardMaterial)
-      .emissiveColor = Color3.FromHexString(color);
+      .diffuseColor = Color3.FromHexString(color);
   }
 
   private setPosition(position: string): void {

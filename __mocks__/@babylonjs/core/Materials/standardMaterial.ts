@@ -1,3 +1,3 @@
 export class StandardMaterial {
-  public emissiveColor?: any;
+  public diffuseColor?: any;
 }
