@@ -1,6 +1,6 @@
 import { Engine } from '@babylonjs/core/Engines/engine';
 import { Scene } from '@babylonjs/core/scene';
-import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
+import { FlyCamera } from '@babylonjs/core/Cameras/flyCamera';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import type { Camera } from '@babylonjs/core/Cameras/camera';
 
@@ -24,7 +24,7 @@ export default class BBScene extends HTMLElement {
 
   connectedCallback() {
     if (!this.querySelector('bb-camera')) {
-      this.camera = new FreeCamera('camera', new Vector3(0, 1.6, 0), this.scene);
+      this.camera = new FlyCamera('camera', new Vector3(0, 1.6, 0), this.scene);
 
       this.camera.attachControl(this.canvas, true);
 

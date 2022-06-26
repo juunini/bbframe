@@ -23,6 +23,8 @@ export default class BBBox extends HTMLElement {
   constructor() {
     super();
 
+    this.classList.add('bb-entity');
+
     const bbScene = this.closest('bb-scene') as BBScene;
     this.object3D = CreateBox('box', {}, bbScene.scene);
     this.object3D.material = new StandardMaterial('standard material for box', bbScene.scene);

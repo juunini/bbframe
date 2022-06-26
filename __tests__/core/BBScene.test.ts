@@ -1,4 +1,4 @@
-import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
+import { FlyCamera } from '@babylonjs/core/Cameras/flyCamera';
 
 import BBScene from 'bbframe/core/BBScene';
 import BBCamera from 'bbframe/core/BBCamera';
@@ -11,12 +11,12 @@ customElements.define('bb-camera', BBCamera);
 
 describe('BBScene', () => {
   context('without bb-camera', () => {
-    it('should generate freeCamera in bb-scene', () => {
+    it('should generate flyCamera in bb-scene', () => {
       document.body.innerHTML = '<bb-scene></bb-scene>';
 
       const bbScene = document.querySelector('bb-scene') as BBScene;
 
-      expect(bbScene.camera instanceof FreeCamera).toBeTruthy();
+      expect(bbScene.camera instanceof FlyCamera).toBeTruthy();
     });
   });
 
