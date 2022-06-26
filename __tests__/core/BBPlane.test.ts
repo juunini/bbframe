@@ -1,10 +1,10 @@
 import BBScene from 'bbframe/core/BBScene';
-import BBBox from 'bbframe/core/BBBox';
+import BBPlane from 'bbframe/core/BBPlane';
 
 jest.mock('@babylonjs/core');
 
 customElements.define('bb-scene', BBScene);
-customElements.define('bb-box', BBBox);
+customElements.define('bb-plane', BBPlane);
 
 function checkCalledMethod(
   name: string,
@@ -12,36 +12,38 @@ function checkCalledMethod(
   changeAttributeValue: string,
 ) {
   // @ts-ignore
-  BBBox.prototype[name] = jest.fn();
+  BBPlane.prototype[name] = jest.fn();
 
   // @ts-ignore
-  expect(BBBox.prototype[name]).not.toBeCalled();
+  expect(BBPlane.prototype[name]).not.toBeCalled();
 
   document.body.innerHTML = `
     <bb-scene>
-      <bb-box></bb-box>
+      <bb-plane></bb-plane>
     </bb-scene>`;
 
-  document.querySelector('bb-box')!
+  document.querySelector('bb-plane')!
     .setAttribute(changeAttributeName, changeAttributeValue);
 
   // @ts-ignore
-  expect(BBBox.prototype[name]).toBeCalled();
+  expect(BBPlane.prototype[name]).toBeCalled();
 }
 
-describe('BBBox', () => {
+describe('BBPlane', () => {
   it('renders', () => {
     document.body.innerHTML = `
       <bb-scene>
-        <bb-box
+        <bb-plane
           color="0 0 0"
           position="0 0 0"
           rotation="0 0 0"
+          width="1"
+          height="1"
         >
-        </bb-box>
+        </bb-plane>
       </bb-scene>`;
 
-    document.querySelector('bb-box')!.setAttribute('color', '#FFFFFF');
+    document.querySelector('bb-plane')!.setAttribute('color', '#FFFFFF');
   });
 
   context('when change attribute "color"', () => {
@@ -59,6 +61,18 @@ describe('BBBox', () => {
   context('with attribute "rotation"', () => {
     it('should be called "setRotation" method', () => {
       checkCalledMethod('setRotation', 'rotation', '0 0 0');
+    });
+  });
+
+  context('with attribute "width"', () => {
+    it('should be called "setWidth" method', () => {
+      checkCalledMethod('setWidth', 'width', '2');
+    });
+  });
+
+  context('with attribute "height"', () => {
+    it('should be called "setHeight" method', () => {
+      checkCalledMethod('setHeight', 'height', '2');
     });
   });
 });
