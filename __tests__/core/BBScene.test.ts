@@ -2,6 +2,7 @@ import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
 
 import BBScene from 'bbframe/core/BBScene';
 import BBCamera from 'bbframe/core/BBCamera';
+import { Engine } from '@babylonjs/core/Engines/engine';
 
 jest.mock('@babylonjs/core');
 
@@ -22,14 +23,14 @@ describe('BBScene', () => {
   context('with bb-camera', () => {
     it('should get camera from bb-camera', () => {
       document.body.innerHTML = `
-      <bb-scene>
-        <bb-camera></bb-camera>
-      </bb-scene>`;
+        <bb-scene>
+          <bb-camera></bb-camera>
+        </bb-scene>`;
 
       const bbScene = document.querySelector('bb-scene') as BBScene;
       const bbFreeCamera = document.querySelector('bb-camera') as BBCamera;
 
-      expect(bbScene.camera).toEqual(bbFreeCamera.camera);
+      expect(bbScene.camera).toEqual(bbFreeCamera.object3D);
     });
   });
 
@@ -38,6 +39,20 @@ describe('BBScene', () => {
       document.body.innerHTML = '<bb-scene></bb-scene>';
 
       document.querySelector('bb-scene')!.remove();
+    });
+  });
+
+  context('when window is resize', () => {
+    it('should call engine.resize', () => {
+      Engine.prototype.resize = jest.fn();
+
+      document.body.innerHTML = '<bb-scene></bb-scene>';
+
+      expect(Engine.prototype.resize).not.toBeCalled();
+
+      global.dispatchEvent(new Event('resize'));
+
+      expect(Engine.prototype.resize).toBeCalled();
     });
   });
 });
