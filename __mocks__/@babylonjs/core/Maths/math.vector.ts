@@ -1,1 +1,3 @@
-export class Vector3 {}
+export class Vector3 {
+  static Zero() {}
+}

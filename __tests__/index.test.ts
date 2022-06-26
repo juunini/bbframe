@@ -3,11 +3,7 @@ import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
 import BBScene from 'bbframe/core/BBScene';
 import BBCamera from 'bbframe/core/BBCamera';
 
-jest.mock('@babylonjs/core/Engines/engine');
-jest.mock('@babylonjs/core/scene');
-jest.mock('@babylonjs/core/Cameras/camera');
-jest.mock('@babylonjs/core/Cameras/freeCamera');
-jest.mock('@babylonjs/core/Maths/math.vector');
+jest.mock('@babylonjs/core');
 
 customElements.define('bb-scene', BBScene);
 customElements.define('bb-camera', BBCamera);

@@ -1,3 +1,5 @@
 import { Camera } from './camera';
 
-export class FreeCamera extends Camera {}
+export class FreeCamera extends Camera {
+  setTarget() {}
+}
