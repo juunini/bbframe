@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://codecov.io/gh/juunini/bbframe">
-    <img src="https://codecov.io/gh/juunini/bbframe/branch/master/graph/badge.svg" alt="Coverage Status">
+    <img src="https://codecov.io/gh/juunini/bbframe/branch/main/graph/badge.svg" alt="Coverage Status">
   </a>
   <a href="https://npmjs.org/package/bbframe">
     <img src="https://img.shields.io/npm/dt/bbframe.svg?style=flat-square" alt="Downloads">
